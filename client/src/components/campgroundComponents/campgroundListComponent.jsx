@@ -1,20 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import CampgroundComponent from "./campgroundComponent";
 
 const CampgroundListComponent = ({ setCurrentId }) => {
-	const camps = useSelector((state) => state.campgrounds);
+	//this is where the camps are searched for in the state, this comes from reducers.index btw
+	const campgrounds = useSelector((state) => state.campgroundsReducers);
 
-	return (
+	console.log(campgrounds.length);
+
+	return campgrounds.length ? (
 		<>
 			<div className="campgroundlist">
-				<div className="post">
-					<div className="tag">
-						<h1>Title</h1>
-						<h2>Description</h2>
-					</div>
-				</div>
+				{campgrounds?.map((camp) => (
+					<CampgroundComponent camp={camp} />
+				))}
 			</div>
 		</>
+	) : (
+		<div className="campgroundlist">
+			<h1>No posts found</h1>
+		</div>
 	);
 };
 

@@ -8,6 +8,7 @@ export const createCampground = async (req, res) => {
 	const newCampground = new campgroundModel(data);
 	try {
 		await newCampground.save();
+
 		res.status(201).json(newCampground);
 	} catch (error) {
 		res.status(409).json({ message: error.message });

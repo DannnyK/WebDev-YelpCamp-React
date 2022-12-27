@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
-const campgroundComponent = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const CampgroundComponent = ({ camp }) => {
+	return (
+		<div className="post">
+			<div className="tag">
+				<h1>{camp.title}</h1>
+				<h2>{camp.price}</h2>
+			</div>
+		</div>
+	);
+};
 
-export default campgroundComponent
+export default CampgroundComponent;

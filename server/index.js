@@ -10,12 +10,17 @@ import campgroundModel from "./models/campgroundModel.js";
 //express settings
 const app = express();
 
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(bodyParser.json());
+app.use(
+	bodyParser.urlencoded({
+		extended: true,
+	})
+);
 app.use(cors());
 
 /////////////////////////////////
 // Express actions
+app.use("/campgrounds", campgroundRoutes);
 app.get("/test1234", async (req, res) => {
 	const data = req.body;
 
@@ -32,12 +37,11 @@ app.get("/test1234", async (req, res) => {
 		res.status(409).json({ message: error.message });
 	}
 });
-app.use("/campgrounds", campgroundRoutes);
 
 /////////////////////////////////
 //database connection
 mongoose
-	.connect(LOCALDB, {
+	.connect(REMOTEDB, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})

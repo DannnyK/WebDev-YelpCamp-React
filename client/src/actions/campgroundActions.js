@@ -9,3 +9,15 @@ export const getCampgrounds = () => async (dispatch) => {
 		console.log(error.message);
 	}
 };
+
+//for some reason this function just straight up posts the data with or without dispatch
+//not complaining tho
+export const createCampgrounds = (data) => async (dispatch) => {
+	try {
+		const { campgroundData } = await api.createCampground(data);
+
+		dispatch({ type: CREATE, payload: campgroundData });
+	} catch (error) {
+		console.log(error);
+	}
+};
