@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { LOCALDB, REMOTEDB, PORT } from "./constants/envVars.js";
 import campgroundRoutes from "./routes/campgroundRoutes.js";
-import CampgroundModel from "./models/campgroundModel.js";
+import campgroundModel from "./models/campgroundModel.js";
 
 /////////////////////////////////
 //express settings
@@ -13,26 +13,13 @@ const app = express();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-/////////////////////////////////
-//mongoose settings
-mongoose.connect(REMOTEDB);
-mongoose.set("strictQuery", true);
-/////////////////////////////////
-//database connection
-const db_connection = mongoose.connection;
-db_connection.on("error", () => {
-	console.log("error");
-});
-db_connection.once("open", () => {
-	console.log("Database Connected");
-});
 
 /////////////////////////////////
 // Express actions
 app.get("/test1234", async (req, res) => {
 	const data = req.body;
 
-	const newCampground = new CampgroundModel({
+	const newCampground = new campgroundModel({
 		title: "Test Title",
 		price: "100",
 		description: "its nice",
@@ -47,6 +34,16 @@ app.get("/test1234", async (req, res) => {
 });
 app.use("/campgrounds", campgroundRoutes);
 
-app.listen(PORT, () => {
-	console.log(`Serving on port ${PORT}`);
-});
+/////////////////////////////////
+//database connection
+mongoose
+	.connect(LOCALDB, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	.then(() =>
+		app.listen(PORT, () =>
+			console.log(`server running on port: ${PORT} \nDatabase connected`)
+		)
+	)
+	.catch((error) => console.log(error.message));

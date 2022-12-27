@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCampgrounds } from "../actions/campgroundActions";
-import CampgroundComponent from "../components/campgroundComponents/campgroundComponent";
+import CampgroundListComponent from "../components/campgroundComponents/campgroundListComponent";
 import "../App.css";
 
 const CampgroundsIndex = () => {
@@ -16,7 +16,8 @@ const CampgroundsIndex = () => {
 		<div>
 			<h1>Index</h1>
 			<div className="main">
-				<CampgroundComponent setCurrentId={setCurrentId} />
+				<h1>hello</h1>
+				<CampgroundListComponent setCurrentId={setCurrentId} />
 			</div>
 		</div>
 	);

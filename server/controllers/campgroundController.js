@@ -1,15 +1,14 @@
-import CampgroundModel from "../models/campgroundModel.js";
+import campgroundModel from "../models/campgroundModel.js";
 import mongoose from "mongoose";
 ///////////////////////////////////////////////////////////////////////////////////////
 //Create
 export const createCampground = async (req, res) => {
 	const data = req.body;
 
-	const newCampground = new CampgroundModel(data);
+	const newCampground = new campgroundModel(data);
 	try {
 		await newCampground.save();
-		res.send(req.body);
-		// res.status(201).json(newCampground);
+		res.status(201).json(newCampground);
 	} catch (error) {
 		res.status(409).json({ message: error.message });
 	}
@@ -18,8 +17,8 @@ export const createCampground = async (req, res) => {
 //Get
 export const getCampgrounds = async (req, res) => {
 	try {
-		const result = CampgroundModel.find({});
-		res.send(result);
+		const result = await campgroundModel.find({});
+		console.log(result);
 		res.status(200).json(result);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
@@ -33,7 +32,7 @@ export const updateCampground = async (req, res) => {
 	const campground = req.body;
 	if (!mongoose.Types.ObjectId.isValid(_id))
 		return res.status(404).send("No Camp with that ID!");
-	const updateCampground = await CampgroundModel.findByIdAndUpdate(
+	const updateCampground = await campgroundModel.findByIdAndUpdate(
 		_id,
 		{ ...campground, _id },
 		{ new: true }
@@ -48,7 +47,7 @@ export const deleteCampground = async (req, res) => {
 	if (!mongoose.Types.ObjectId.isValid(id))
 		return res.status(404).send("No Camp with that ID!");
 
-	await CampgroundModel.findByIdAndRemove(id);
+	await campgroundModel.findByIdAndRemove(id);
 	res.json({ message: "Campground deleted successfully" });
 };
 ///////////////////////////////////////////////////////////////////////////////////////

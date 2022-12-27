@@ -9,4 +9,3 @@ export const getCampgrounds = () => async (dispatch) => {
 		console.log(error.message);
 	}
 };
-

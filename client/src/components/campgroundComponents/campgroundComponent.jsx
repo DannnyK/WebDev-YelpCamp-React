@@ -1,19 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react'
 
-const CampgroundComponent = ({ setCurrentId }) => {
-	const campground = useSelector((state) => state.campground);
+const campgroundComponent = () => {
+  return (
+    <div>
+      
+    </div>
+  )
+}
 
-	return (
-		<>
-			<div className="post">
-				<div className="tag">
-					<h1>Title</h1>
-					<h2>Description</h2>
-				</div>
-			</div>
-		</>
-	);
-};
-
-export default CampgroundComponent;
+export default campgroundComponent
