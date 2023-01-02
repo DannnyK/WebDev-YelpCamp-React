@@ -11,3 +11,12 @@ export const fetchCampgrounds = async () => {
 
 export const createCampground = (newCampground) =>
 	axios.post(url, newCampground);
+
+export const fetchCampground = async (id) => {
+	const result = await axios.get(`${url}/${id}`).then((response) => {
+		return response;
+	});
+	console.log(`${url}/${id}`);
+	console.log(result);
+	return result;
+};

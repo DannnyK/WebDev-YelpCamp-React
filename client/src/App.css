@@ -1,5 +1,7 @@
 body {
 	background-color: darkgray;
+	padding: 0px;
+	margin: 0px;
 }
 
 .main {
@@ -10,6 +12,21 @@ body {
 	width: 100%;
 	height: 100%;
 	background-color: aliceblue;
+}
+
+/* Navbar */
+.nav-main {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-bottom: 2px solid black;
+	padding: 5px 0px;
+}
+.nav-links {
+	display: flex;
+	flex-direction: row;
+	width: 20%;
+	justify-content: space-evenly;
 }
 /* Campgrounds */
 .post {
@@ -31,3 +48,5 @@ form {
 	display: flex;
 	flex-direction: column;
 }
+
+/* Show page */

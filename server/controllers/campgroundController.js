@@ -52,3 +52,12 @@ export const deleteCampground = async (req, res) => {
 	res.json({ message: "Campground deleted successfully" });
 };
 ///////////////////////////////////////////////////////////////////////////////////////
+//Show Camp
+
+export const showCampground = async (req, res) => {
+	const { id: _id } = req.params;
+	if (!mongoose.Types.ObjectId.isValid(_id))
+		return res.status(404).send("Could not find that Campground!");
+	const showCampground = await campgroundModel.findById(_id);
+	res.json(showCampground);
+};

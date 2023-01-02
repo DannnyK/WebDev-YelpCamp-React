@@ -17,8 +17,6 @@ const NewCampground = () => {
 
 	const handlesubmit = (e) => {
 		e.preventDefault();
-		console.log(campgroundData);
-		
 		dispatch(createCampgrounds(campgroundData));
 	};
 

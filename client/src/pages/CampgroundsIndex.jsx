@@ -4,7 +4,7 @@ import { getCampgrounds } from "../actions/campgroundActions";
 import CampgroundListComponent from "../components/campgroundComponents/campgroundListComponent";
 import "../App.css";
 
-const CampgroundsIndex = () => {
+const CampgroundsIndex = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -15,7 +15,10 @@ const CampgroundsIndex = () => {
 		<div>
 			<h1>Index</h1>
 			<div className="main">
-				<CampgroundListComponent />
+				<CampgroundListComponent
+					currentId={currentId}
+					setCurrentId={setCurrentId}
+				/>
 			</div>
 		</div>
 	);
