@@ -25,8 +25,11 @@ body {
 .nav-links {
 	display: flex;
 	flex-direction: row;
-	width: 20%;
-	justify-content: space-evenly;
+	width: fit-content;
+}
+
+.nav-link {
+	margin: 0px 5px;
 }
 /* Campgrounds */
 .post {

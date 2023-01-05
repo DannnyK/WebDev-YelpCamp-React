@@ -20,3 +20,10 @@ export const fetchCampground = async (id) => {
 	console.log(result);
 	return result;
 };
+
+export const destroyCampground = async (id) => {
+	const result = await axios.delete(`${url}/${id}`).then((response) => {
+		return response;
+	});
+	return result;
+};

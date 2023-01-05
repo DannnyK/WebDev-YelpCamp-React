@@ -1,5 +1,5 @@
 import * as api from "../api";
-import { CREATE, FETCH_ALL, FETCH_ONE } from "../constants/actionTypes";
+import { CREATE, DELETE, FETCH_ALL } from "../constants/actionTypes";
 
 export const getCampgrounds = () => async (dispatch) => {
 	try {
@@ -27,6 +27,15 @@ export const findCampground = (id) => async (dispatch) => {
 		const { data } = await api.fetchCampground(id);
 		console.log(data);
 		dispatch({ type: FETCH_ALL, payload: data });
+	} catch (error) {
+		console.log(error.message);
+	}
+};
+
+export const deleteCampground = (id) => async (dispatch) => {
+	try {
+		const { data } = await api.destroyCampground(id);
+		dispatch({ type: DELETE, payload: data });
 	} catch (error) {
 		console.log(error.message);
 	}

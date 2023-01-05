@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { redirect, useNavigate } from "react-router-dom";
 import { createCampgrounds } from "../actions/campgroundActions";
 
 import "../App.css";
@@ -13,11 +14,14 @@ const NewCampground = () => {
 		location: "",
 	});
 
+	const navigate = useNavigate();
+
 	const dispatch = useDispatch();
 
-	const handlesubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(createCampgrounds(campgroundData));
+		navigate("/campgrounds");
 	};
 
 	const clear = () => {};
@@ -28,7 +32,7 @@ const NewCampground = () => {
 				action="/post"
 				autoComplete="off"
 				noValidate
-				onSubmit={handlesubmit}
+				onSubmit={handleSubmit}
 			>
 				<input
 					type="text"

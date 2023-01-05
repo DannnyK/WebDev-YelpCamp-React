@@ -6,9 +6,15 @@ const Navbar = (props) => {
 	return (
 		<div className="nav-main">
 			<div className="nav-links">
-				<Link to="/">Home</Link>
-				<Link to="/campgrounds">Campgrounds</Link>
-				<Link to="/campgrounds/new">NewCamp</Link>
+				<Link className="nav-link" to="/">
+					Home
+				</Link>
+				<Link className="nav-link" to="/campgrounds">
+					Campgrounds
+				</Link>
+				<Link className="nav-link" to="/campgrounds/new">
+					NewCamp
+				</Link>
 			</div>
 			<div className="middle">{props.currentId}</div>
 			<div className="nav-actions">Login/Signup</div>
