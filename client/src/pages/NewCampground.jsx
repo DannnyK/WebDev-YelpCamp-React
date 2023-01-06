@@ -1,7 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { redirect, useNavigate } from "react-router-dom";
 import { createCampgrounds } from "../actions/campgroundActions";
 
 import "../App.css";
@@ -13,28 +11,35 @@ const NewCampground = () => {
 		description: "",
 		location: "",
 	});
-
-	const navigate = useNavigate();
-
 	const dispatch = useDispatch();
 
+	function redirect() {
+		const timeout = setTimeout(() => {
+			window.location.replace("http://localhost:3000/campgrounds");
+		}, 200);
+
+		return () => clearTimeout(timeout);
+	}
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(createCampgrounds(campgroundData));
-		navigate("/campgrounds");
+		redirect();
 	};
-
-	const clear = () => {};
+	const clear = () => {
+		//do something
+	};
 
 	return (
 		<div className="main">
 			<form
+			className="form"
 				action="/post"
 				autoComplete="off"
 				noValidate
 				onSubmit={handleSubmit}
 			>
 				<input
+					className="form-input"
 					type="text"
 					name="title"
 					id="title"
@@ -45,6 +50,7 @@ const NewCampground = () => {
 					placeholder="Title"
 				/>
 				<input
+					className="form-input"
 					type="text"
 					name="price"
 					id="price"
@@ -55,6 +61,7 @@ const NewCampground = () => {
 					placeholder="Price"
 				/>
 				<input
+					className="form-input"
 					type="text"
 					name="description"
 					id="description"
@@ -65,9 +72,10 @@ const NewCampground = () => {
 							description: e.target.value,
 						})
 					}
-					placeholder="description"
+					placeholder="Description"
 				/>
 				<input
+					className="form-input"
 					type="text"
 					name="location"
 					id="location"
@@ -75,10 +83,13 @@ const NewCampground = () => {
 					onChange={(e) =>
 						setCampgroundData({ ...campgroundData, location: e.target.value })
 					}
-					placeholder="location"
+					placeholder="Location"
 				/>
-				<button>Submit</button>
-				<button onClick={clear}>Clear</button>
+				<div className="form-footer">
+					<button className="btn-default">Submit</button>
+
+					<button className="btn-regular" onClick={clear}>Clear</button>
+				</div>
 			</form>
 		</div>
 	);

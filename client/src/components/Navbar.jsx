@@ -17,7 +17,7 @@ const Navbar = (props) => {
 				</Link>
 			</div>
 			<div className="middle">{props.currentId}</div>
-			<div className="nav-actions">Login/Signup</div>
+			<div className="nav-actions">Login/Sign Up</div>
 		</div>
 	);
 };

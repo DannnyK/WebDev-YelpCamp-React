@@ -1,28 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CampgroundComponent = (props) => {
-	const { camp, setCurrentId } = props;
-	const campId = props.camp?._id;
+	const navigate = useNavigate();
 
-	return (
-		<div className="post">
+	const { camp } = props;
+	const campId = camp?._id;
+
+	const redirect = () => {
+		navigate(`/campgrounds/${campId}`);
+	};
+
+	return camp ? (
+		<div
+			className="post"
+			onClick={() => {
+				redirect();
+			}}
+		>
 			<div className="tag">
-				<p>{campId}</p>
 				<h1>{camp?.title}</h1>
-				<h2>{camp?.price}</h2>
-
-				<Link
-					onClick={() => {
-						setCurrentId(campId);
-					}}
-					to={{
-						pathname: `/campgrounds/${campId}`,
-					}}
-				>
-					edit
-				</Link>
+				<h2>{camp?.description}</h2>
+				<h3>{camp?.location}</h3>
+				<h4>{camp?.price}</h4>
 			</div>
+		</div>
+	) : (
+		<div className="post">
+			<div className="tag">Loading try refreshing the page</div>
 		</div>
 	);
 };

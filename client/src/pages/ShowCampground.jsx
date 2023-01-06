@@ -4,16 +4,18 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCampground } from "../actions/campgroundActions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ShowCampground = (props) => {
 	const [currentCamp, setCurrentCamp] = useState();
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
+	const { id } = useParams();
 
 	const dispatch = useDispatch();
 
-	const id = props.currentId;
+	// const id = props.currentId;
+	const setCurrentId = props.setCurrentId;
 
 	const fetchCampground = async (id) => {
 		try {
@@ -34,11 +36,20 @@ const ShowCampground = (props) => {
 		fetchCampground(id);
 	}, [id]);
 
+	function redirect() {
+		const timeout = setTimeout(() => {
+			window.location.replace("http://localhost:3000/campgrounds");
+		}, 200);
+
+		return () => clearTimeout(timeout);
+	}
+
 	function deleteCampgroundConfirm() {
 		const confirm = prompt("are you sure? y/n");
 		if (confirm.toLowerCase() === "y") {
 			dispatch(deleteCampground(id));
-			navigate("/campgrounds");
+			setCurrentId(null);
+			redirect();
 		} else {
 			alert("not deleted");
 		}
@@ -52,17 +63,37 @@ const ShowCampground = (props) => {
 		</>
 	) : (
 		<>
-			<h1>Showing {currentCamp?.title}</h1>
-			<div className="main">
-				<p> {currentCamp?.title}</p>
-				<p> {currentCamp?.price}</p>
-				<button
-					onClick={() => {
-						deleteCampgroundConfirm();
-					}}
-				>
-					Delete
-				</button>
+			<div className="show-main">
+				<div className="card">
+					<div className="card-image">
+						uhhhh... there's supposed to be an image here
+					</div>
+					<div className="card-bottom">
+						<div className="card-details">
+							<div className="card-details-title">
+								<h1> {currentCamp?.title} </h1>
+							</div>
+							<div className="card-details-description">
+								<h3>{currentCamp?.description}</h3>
+								<p>{currentCamp?.location}</p>
+								<p className="muted">{currentCamp?.price} per night</p>
+							</div>
+						</div>
+						<div className="card-footer">
+							<button
+								className="btn-primary"
+								onClick={() => {
+									deleteCampgroundConfirm();
+								}}
+							>
+								Delete
+							</button>
+						</div>
+					</div>
+				</div>
+				<div className="card">
+					<h1>Card</h1>
+				</div>
 			</div>
 		</>
 	);
