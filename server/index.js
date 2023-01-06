@@ -21,22 +21,6 @@ app.use(cors());
 /////////////////////////////////
 // Express actions
 app.use("/campgrounds", campgroundRoutes);
-app.get("/test1234", async (req, res) => {
-	const data = req.body;
-
-	const newCampground = new campgroundModel({
-		title: "Test Title",
-		price: "100",
-		description: "its nice",
-		location: "cape town",
-	});
-	try {
-		await newCampground.save();
-		res.status(201).json(newCampground);
-	} catch (error) {
-		res.status(409).json({ message: error.message });
-	}
-});
 
 /////////////////////////////////
 //database connection

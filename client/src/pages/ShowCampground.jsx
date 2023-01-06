@@ -5,11 +5,13 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteCampground } from "../actions/campgroundActions";
 import { useNavigate, useParams } from "react-router-dom";
+import CampgroundReviewsComponent from "../components/campgroundComponents/campgroundShowComponents/campgroundReviewInputComponent";
 
 const ShowCampground = (props) => {
 	const [currentCamp, setCurrentCamp] = useState();
 	const [loading, setLoading] = useState(false);
-	const navigate = useNavigate();
+	const [foundStatus, setFoundStatus] = useState(true);
+	// const navigate = useNavigate();
 	const { id } = useParams();
 
 	const dispatch = useDispatch();
@@ -24,10 +26,12 @@ const ShowCampground = (props) => {
 				.get(`http://localhost:5400/campgrounds/${id}`)
 				.then((response) => {
 					setLoading(false);
+					console.log(response.data);
 					setCurrentCamp(response.data);
 				});
 		} catch (error) {
-			setLoading(false);
+			setLoading(true);
+			setFoundStatus(false);
 			console.error(error);
 		}
 	};
@@ -58,7 +62,7 @@ const ShowCampground = (props) => {
 	return loading ? (
 		<>
 			<div className="main">
-				<h1>loading</h1>
+				<h1>Not Found</h1>
 			</div>
 		</>
 	) : (
@@ -80,8 +84,9 @@ const ShowCampground = (props) => {
 							</div>
 						</div>
 						<div className="card-footer">
+							<button className="btn-warning-expand">Edit</button>
 							<button
-								className="btn-primary"
+								className="btn-danger-expand"
 								onClick={() => {
 									deleteCampgroundConfirm();
 								}}
@@ -91,9 +96,7 @@ const ShowCampground = (props) => {
 						</div>
 					</div>
 				</div>
-				<div className="card">
-					<h1>Card</h1>
-				</div>
+				<CampgroundReviewsComponent />
 			</div>
 		</>
 	);

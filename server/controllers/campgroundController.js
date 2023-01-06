@@ -19,7 +19,6 @@ export const createCampground = async (req, res) => {
 export const getCampgrounds = async (req, res) => {
 	try {
 		const result = await campgroundModel.find({});
-		console.log(result);
 		res.status(200).json(result);
 	} catch (error) {
 		res.status(404).json({ message: error.message });

@@ -18,11 +18,16 @@ const CampgroundComponent = (props) => {
 				redirect();
 			}}
 		>
+			<div className="post-image">
+				uhhh... theres supposed to be an image here
+			</div>
 			<div className="tag">
-				<h1>{camp?.title}</h1>
+				<h1 className="tag-header">{camp?.title}</h1>
 				<h2>{camp?.description}</h2>
-				<h3>{camp?.location}</h3>
-				<h4>{camp?.price}</h4>
+				<div className="tag-footer">
+					<h3 className="muted">{camp?.location}</h3>
+					<h4 className="muted">{camp?.price}</h4>
+				</div>
 			</div>
 		</div>
 	) : (
