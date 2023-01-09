@@ -92,7 +92,14 @@ const ShowCampground = (props) => {
 							</div>
 						</div>
 						<div className="card-footer">
-							<button className="btn-warning-expand">Edit</button>
+							<button
+								onClick={() => {
+									handleEdit();
+								}}
+								className="btn-warning-expand"
+							>
+								Edit
+							</button>
 							<button
 								className="btn-danger-expand"
 								onClick={() => {
@@ -100,13 +107,6 @@ const ShowCampground = (props) => {
 								}}
 							>
 								Delete
-							</button>
-							<button
-								onClick={() => {
-									handleEdit();
-								}}
-							>
-								Edit
 							</button>
 						</div>
 					</div>

@@ -15,13 +15,7 @@ const EditCampgroundForm = ({ currentId }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	//////////////////////////////////////////////////////////////////////////////////////////////
-	function redirect() {
-		const timeout = setTimeout(() => {
-			window.location.replace("http://localhost:3000/campgrounds");
-		}, 200);
 
-		return () => clearTimeout(timeout);
-	}
 	//////////////////////////////////////////////////////////////////////////////////////////////
 
 	const fetchCampground = async (id) => {
@@ -46,8 +40,18 @@ const EditCampgroundForm = ({ currentId }) => {
 		dispatch(updateCampground(currentId, campgroundData));
 		navigate(`/campgrounds/${currentId}`);
 	};
-	const clear = () => {
+	const clear = (e) => {
+		e.preventDefault();
+		setCampgroundData({
+			title: "",
+			price: "",
+			description: "",
+			location: "",
+		});
 		//do something
+	};
+	const handleCancel = () => {
+		navigate(`/campgrounds/${currentId}`);
 	};
 	//////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -110,9 +114,11 @@ const EditCampgroundForm = ({ currentId }) => {
 				/>
 				<div className="form-footer">
 					<button className="btn-default">Submit</button>
-
 					<button className="btn-regular" onClick={clear}>
 						Clear
+					</button>
+					<button className="btn-regular" onClick={handleCancel}>
+						Cancel
 					</button>
 				</div>
 			</form>
