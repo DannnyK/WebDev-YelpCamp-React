@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
-const appName = "WebDev-YelpCamp-React";
+const appName = "react";
 
 //////////////////////////////////////////////////////////////////////////////
 //schemas
@@ -12,11 +12,11 @@ const CampgroundSchema = new Schema(
 		location: String,
 	},
 	{
-		collection: `(${appName})-Campgrounds`,
+		collection: `${appName}Campgrounds`,
 	}
 );
 
-const CampgroundModel = mongoose.model("Campground", CampgroundSchema);
+const campgroundModel = mongoose.model("Campground", CampgroundSchema);
 
-export default CampgroundModel;
+export default campgroundModel;
 //////////////////////////////////////////////////////////////////////////////

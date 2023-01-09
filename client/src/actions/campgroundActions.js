@@ -1,5 +1,5 @@
 import * as api from "../api";
-import { CREATE, FETCH_ALL } from "../constants/actionTypes";
+import { CREATE, DELETE, FETCH_ALL, UPDATE } from "../constants/actionTypes";
 
 export const getCampgrounds = () => async (dispatch) => {
 	try {
@@ -10,3 +10,41 @@ export const getCampgrounds = () => async (dispatch) => {
 	}
 };
 
+//for some reason this function just straight up posts the data with or without dispatch
+//not complaining tho
+export const createCampgrounds = (data) => async (dispatch) => {
+	try {
+		const { campgroundData } = await api.createCampground(data);
+		dispatch({ type: CREATE, payload: campgroundData });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const updateCampground = (id, camp) => async (dispatch) => {
+	try {
+		const { data } = await api.updateCampground(id, camp);
+		dispatch({ type: UPDATE, payload: data });
+	} catch (error) {
+		console.log(error.message);
+	}
+};
+
+export const findCampground = (id) => async (dispatch) => {
+	try {
+		const { data } = await api.fetchCampground(id);
+		console.log(data);
+		dispatch({ type: FETCH_ALL, payload: data });
+	} catch (error) {
+		console.log(error.message);
+	}
+};
+
+export const deleteCampground = (id) => async (dispatch) => {
+	try {
+		const { data } = await api.destroyCampground(id);
+		dispatch({ type: DELETE, payload: data });
+	} catch (error) {
+		console.log(error.message);
+	}
+};

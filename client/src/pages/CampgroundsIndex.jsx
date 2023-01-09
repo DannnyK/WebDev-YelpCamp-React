@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCampgrounds } from "../actions/campgroundActions";
-import CampgroundComponent from "../components/campgroundComponents/campgroundComponent";
+import CampgroundListComponent from "../components/campgroundComponents/campgroundListComponent";
 import "../App.css";
 
-const CampgroundsIndex = () => {
-	const [currentId, setCurrentId] = useState(null);
+const CampgroundsIndex = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -16,7 +15,10 @@ const CampgroundsIndex = () => {
 		<div>
 			<h1>Index</h1>
 			<div className="main">
-				<CampgroundComponent setCurrentId={setCurrentId} />
+				<CampgroundListComponent
+					currentId={currentId}
+					setCurrentId={setCurrentId}
+				/>
 			</div>
 		</div>
 	);
