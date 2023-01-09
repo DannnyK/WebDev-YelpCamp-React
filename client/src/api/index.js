@@ -12,6 +12,9 @@ export const fetchCampgrounds = async () => {
 export const createCampground = (newCampground) =>
 	axios.post(url, newCampground);
 
+export const updateCampground = (id, updatedCampground) =>
+	axios.patch(`${url}/${id}`, updatedCampground);
+
 export const fetchCampground = async (id) => {
 	const result = await axios.get(`${url}/${id}`).then((response) => {
 		return response;

@@ -26,7 +26,7 @@ const CampgroundComponent = (props) => {
 				<h2>{camp?.description}</h2>
 				<div className="tag-footer">
 					<h3 className="muted">{camp?.location}</h3>
-					<h4 className="muted">{camp?.price}</h4>
+					<h4 className="muted">{camp?.price}/night</h4>
 				</div>
 			</div>
 		</div>

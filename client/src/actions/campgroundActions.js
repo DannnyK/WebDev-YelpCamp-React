@@ -1,5 +1,5 @@
 import * as api from "../api";
-import { CREATE, DELETE, FETCH_ALL } from "../constants/actionTypes";
+import { CREATE, DELETE, FETCH_ALL, UPDATE } from "../constants/actionTypes";
 
 export const getCampgrounds = () => async (dispatch) => {
 	try {
@@ -15,10 +15,18 @@ export const getCampgrounds = () => async (dispatch) => {
 export const createCampgrounds = (data) => async (dispatch) => {
 	try {
 		const { campgroundData } = await api.createCampground(data);
-
 		dispatch({ type: CREATE, payload: campgroundData });
 	} catch (error) {
 		console.log(error);
+	}
+};
+
+export const updateCampground = (id, camp) => async (dispatch) => {
+	try {
+		const { data } = await api.updateCampground(id, camp);
+		dispatch({ type: UPDATE, payload: data });
+	} catch (error) {
+		console.log(error.message);
 	}
 };
 

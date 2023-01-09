@@ -7,17 +7,17 @@ const Navbar = (props) => {
 		<div className="nav-main">
 			<div className="nav-links">
 				<Link className="nav-link" to="/">
-					Home
+					home
 				</Link>
 				<Link className="nav-link" to="/campgrounds">
-					Campgrounds
+					campgrounds
 				</Link>
 				<Link className="nav-link" to="/campgrounds/new">
-					NewCamp
+					newCampground
 				</Link>
 			</div>
 			<div className="middle">{props.currentId}</div>
-			<div className="nav-actions">Login/Sign Up</div>
+			<div className="nav-actions">login/signUp</div>
 		</div>
 	);
 };

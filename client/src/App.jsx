@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
+import Loader from "./components/loader/loader";
 
 const Login = lazy(() => import("./pages/Login"));
 const CampgroundPage = lazy(() => import("./pages/ShowCampground"));
@@ -16,7 +17,7 @@ function App() {
 	return (
 		<Router>
 			<Navbar currentId={currentId} />
-			<Suspense fallback={<h1>Loading</h1>}>
+			<Suspense fallback={<Loader />}>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route
@@ -28,7 +29,7 @@ function App() {
 							/>
 						}
 					/>
-					<Route path="/campgrounds/new" element={<CreateCampgroundPage />} />
+					<Route path="/campgrounds/new" element={<CreateCampgroundPage currentId={currentId} />} />
 					<Route
 						path="/campgrounds/:id"
 						element={

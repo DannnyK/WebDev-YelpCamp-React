@@ -5,7 +5,6 @@ import CampgroundListComponent from "../components/campgroundComponents/campgrou
 import "../App.css";
 
 const CampgroundsIndex = ({ currentId, setCurrentId }) => {
-	
 	const dispatch = useDispatch();
 
 	useEffect(() => {
