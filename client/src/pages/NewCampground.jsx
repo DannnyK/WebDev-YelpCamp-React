@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import "../App.css";
 import EditCampgroundForm from "../components/campgroundComponents/campgroundFormComponents/editCampgroundForm";
 import NewCampgroundForm from "../components/campgroundComponents/campgroundFormComponents/newCampgroundForm";
-const NewCampground = ({ currentId }) => {
+const NewCampground = ({ currentId,setCurrentId }) => {
 	const [editState, setEditState] = useState(false);
 
 	useEffect(() => {
@@ -15,7 +15,7 @@ const NewCampground = ({ currentId }) => {
 	return editState ? (
 		<>
 			<div className="main">
-				<EditCampgroundForm currentId={currentId} />
+				<EditCampgroundForm currentId={currentId} setCurrentId={setCurrentId} />
 			</div>
 		</>
 	) : (

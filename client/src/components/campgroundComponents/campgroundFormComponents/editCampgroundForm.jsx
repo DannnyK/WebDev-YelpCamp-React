@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateCampground } from "../../../actions/campgroundActions";
 
-const EditCampgroundForm = ({ currentId }) => {
+const EditCampgroundForm = ({ currentId, setCurrentId }) => {
 	const [campgroundData, setCampgroundData] = useState({
 		title: "",
 		price: "",
@@ -52,12 +52,13 @@ const EditCampgroundForm = ({ currentId }) => {
 	};
 	const handleCancel = () => {
 		navigate(`/campgrounds/${currentId}`);
+		setCurrentId(null);
 	};
 	//////////////////////////////////////////////////////////////////////////////////////////////
 
 	return (
 		<div>
-			<h1>edit</h1>
+			<h1>Edit</h1>
 			<form
 				className="form"
 				action="/post"
@@ -87,8 +88,8 @@ const EditCampgroundForm = ({ currentId }) => {
 					}
 					placeholder="Price"
 				/>
-				<input
-					className="form-input"
+				<textarea
+					className="form-input-textarea"
 					type="text"
 					name="description"
 					id="description"
@@ -113,11 +114,11 @@ const EditCampgroundForm = ({ currentId }) => {
 					placeholder="Location"
 				/>
 				<div className="form-footer">
-					<button className="btn-default">Submit</button>
-					<button className="btn-regular" onClick={clear}>
+					<button className="btn-success-expand">Submit</button>
+					<button className="btn-warning-expand" onClick={clear}>
 						Clear
 					</button>
-					<button className="btn-regular" onClick={handleCancel}>
+					<button className="btn-danger-expand" onClick={handleCancel}>
 						Cancel
 					</button>
 				</div>

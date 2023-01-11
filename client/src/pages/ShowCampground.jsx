@@ -7,11 +7,14 @@ import { deleteCampground } from "../actions/campgroundActions";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import CampgroundReviewsComponent from "../components/campgroundComponents/campgroundShowComponents/campgroundReviewInputComponent";
 import Loader from "../components/loader/loader";
+import NoImageError from "../components/NoImageError";
+import ReviewCounter from "../components/reviewComponents/ReviewCounter";
 
 const ShowCampground = (props) => {
 	const [currentCamp, setCurrentCamp] = useState();
 	const [loading, setLoading] = useState(false);
 	const [foundStatus, setFoundStatus] = useState(true);
+	const [reviewCount, setReviewCount] = useState(0);
 	const navigate = useNavigate();
 	const { id } = useParams();
 
@@ -78,7 +81,7 @@ const ShowCampground = (props) => {
 			<div className="show-main">
 				<div className="card">
 					<div className="card-image">
-						{/* uhhhh... there's supposed to be an image here */}
+						<NoImageError />
 					</div>
 					<div className="card-bottom">
 						<div className="card-details">
@@ -92,26 +95,36 @@ const ShowCampground = (props) => {
 							</div>
 						</div>
 						<div className="card-footer">
-							<button
-								onClick={() => {
-									handleEdit();
-								}}
-								className="btn-warning-expand"
-							>
-								Edit
-							</button>
-							<button
-								className="btn-danger-expand"
-								onClick={() => {
-									deleteCampgroundConfirm();
-								}}
-							>
-								Delete
-							</button>
+							<div>
+								<button
+									onClick={() => {
+										handleEdit();
+									}}
+									className="btn-warning-expand"
+								>
+									Edit
+								</button>
+								<button
+									className="btn-danger-expand"
+									onClick={() => {
+										deleteCampgroundConfirm();
+									}}
+								>
+									Delete
+								</button>
+							</div>
+							<div className="info">
+								<ReviewCounter reviewCount={reviewCount} />
+							</div>
 						</div>
 					</div>
 				</div>
-				<CampgroundReviewsComponent />
+				<div className="card">
+					<CampgroundReviewsComponent
+						reviewCount={reviewCount}
+						setReviewCount={setReviewCount}
+					/>
+				</div>
 			</div>
 		</>
 	);

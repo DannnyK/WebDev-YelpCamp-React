@@ -12,7 +12,11 @@ const CampgroundListComponent = ({ setCurrentId }) => {
 		<>
 			<div className="campground-list">
 				{campgrounds?.map((camp) => (
-					<CampgroundComponent camp={camp} setCurrentId={setCurrentId} />
+					<CampgroundComponent
+						key={camp._id}
+						camp={camp}
+						setCurrentId={setCurrentId}
+					/>
 				))}
 			</div>
 		</>

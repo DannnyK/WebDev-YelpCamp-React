@@ -9,6 +9,7 @@ const CampgroundReviewSchema = new Schema(
 		title: String,
 		body: String,
 		author: String,
+		postedOnCampId: String,
 	},
 	{
 		collection: `${appName}CampgroundsReviews`,

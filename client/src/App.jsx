@@ -29,7 +29,15 @@ function App() {
 							/>
 						}
 					/>
-					<Route path="/campgrounds/new" element={<CreateCampgroundPage currentId={currentId} />} />
+					<Route
+						path="/campgrounds/new"
+						element={
+							<CreateCampgroundPage
+								currentId={currentId}
+								setCurrentId={setCurrentId}
+							/>
+						}
+					/>
 					<Route
 						path="/campgrounds/:id"
 						element={

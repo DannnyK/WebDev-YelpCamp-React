@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import NoImageError from "../NoImageError";
 
 const CampgroundComponent = (props) => {
 	const navigate = useNavigate();
@@ -19,14 +20,14 @@ const CampgroundComponent = (props) => {
 			}}
 		>
 			<div className="post-image">
-				uhhh... theres supposed to be an image here
+				<NoImageError />
 			</div>
 			<div className="tag">
 				<h1 className="tag-header">{camp?.title}</h1>
-				<h2>{camp?.description}</h2>
+				<p className="tag-body">{camp?.description}</p>
 				<div className="tag-footer">
 					<h3 className="muted">{camp?.location}</h3>
-					<h4 className="muted">{camp?.price}/night</h4>
+					<h4 className="muted ">{camp?.price}/night</h4>
 				</div>
 			</div>
 		</div>

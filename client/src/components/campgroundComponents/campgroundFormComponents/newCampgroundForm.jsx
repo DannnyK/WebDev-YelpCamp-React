@@ -58,8 +58,8 @@ const NewCampgroundForm = () => {
 					}
 					placeholder="Price"
 				/>
-				<input
-					className="form-input"
+				<textarea
+					className="form-input-textarea"
 					type="text"
 					name="description"
 					id="description"
@@ -84,9 +84,9 @@ const NewCampgroundForm = () => {
 					placeholder="Location"
 				/>
 				<div className="form-footer">
-					<button className="btn-default">Submit</button>
+					<button className="btn-success-expand">Submit</button>
 
-					<button className="btn-regular" onClick={clear}>
+					<button className="btn-danger-expand" onClick={clear}>
 						Clear
 					</button>
 				</div>
